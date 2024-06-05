@@ -5,7 +5,7 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeBooking = async (req, res) => {
-    const frontend_url = "http://localhost:3000";
+    const frontend_url = "http://localhost:3000" || "https://master--tuneguru.netlify.app/";
 
     try {
         console.log('Request Body:', req.body); // Log the request body
@@ -88,4 +88,15 @@ const verifyOrder = async (req,res) =>{
 
 }
 
-module.exports = {placeBooking,verifyOrder}
+const userBookings = async(req,res) =>{
+    try {
+        const bookings = await bookingModel.find({userId:req.userId});
+        res.json({success:true, data: bookings})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false, message:"Error"})
+    }
+
+}
+
+module.exports = {placeBooking,verifyOrder, userBookings}
