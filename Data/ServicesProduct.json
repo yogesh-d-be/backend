@@ -1,0 +1,183 @@
+[{
+  "service":"AC",
+  "serviceType": "Split",
+  "serviceName": "Power Saver AC Service",
+  "price": 599,
+  "description":
+    "Cleaning of AC with Foam and water jet by a TuneGuru professional for better cooling and lower power consumption",
+  "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Cleaning of AC filters, cooling coil, drain tray and other parts",
+      "Gas pressure check, if required",
+      "Cleaning of the outdoor unit with water jet for split AC, if possible"
+    ]
+  },
+  {
+    "service":"AC",
+    "serviceType": "Split",
+    "serviceName": "AC Service Lite",
+    "price": 439,
+    "description":
+      "Basic cleaning of AC with water jet by a TuneGuru professional for better cooling and lower power consumption",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Basic water jet cleaning of indoor unit",
+      "Basic cleaning of outdoor unit",
+      "Final checks & clean up"
+    ]
+  },
+  {
+    "service":"AC",
+    "serviceType": "Window",
+    "serviceName": "Power Saver AC Service",
+    "price": 699,
+    "description":
+      "Cleaning of AC with Foam and water jet by a TuneGuru professional for better cooling and lower power consumption",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Cleaning of AC filters, cooling coil, drain tray and other parts",
+      "Gas pressure check, if required",
+      "Cleaning of the outdoor unit with water jet for split AC, if possible"
+    ]
+  },
+  {
+    "service":"AC",
+    "serviceType": "Window",
+    "serviceName": "AC Service Lite",
+    "price": 539,
+    "description":
+      "Basic cleaning of AC with water jet by a TuneGuru professional for better cooling and lower power consumption",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Basic water jet cleaning of indoor unit",
+      "Basic cleaning of outdoor unit",
+      "Final checks & clean up"
+    ]
+  },
+
+
+  {
+    "service":"AC",
+    "serviceType": "Split",
+    "serviceName": "AC Repair",
+    "price": 299,
+    "description":
+      "Through inspection and repairs of AC problems like less cooling, water leakage etc. by a TuneGuru menders",
+    "image":"https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Minimum service charge for repair is ₹299, it may vary depends on repair",
+      "Service charge for installing any spare part, if required",
+      "Jet service, PCB repair, cost of spare parts, installation and uninstallation are not covered"
+    ]
+  },  
+  {
+    "service":"AC",
+    "serviceType": "Split",
+    "serviceName": "Gas Leak & Refill ",
+    "price": 2000,
+    "description":
+      "Through diagnosis leak identification & fixing, gas refil to avoid leakages",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Repair of gas leakage",
+      "Cost of gas charging",
+      "Checking of AC controls and functioning",
+      "Cleaning of the area post service",
+      "Cost of spare parts, installation & uninstallation services are not covered"
+    ]
+  },  
+  {
+    "service":"AC",
+    "serviceType": "Window",
+    "serviceName": "AC Repair",
+    "price": 399,
+    "description":
+      "Through inspection and repairs of AC problems like less cooling, water leakage etc. by a TuneGuru menders",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Minimum service charge for repair is ₹299, it may vary depends on repair",
+      "Service charge for installing any spare part, if required",
+      "Jet service, PCB repair, cost of spare parts, installation and uninstallation are not covered"
+    ]
+  },  
+  {
+    "service":"AC",
+    "serviceType": "Window",
+    "serviceName": "Gas Leak & Refill ",
+    "price": 1999,
+    "description":
+      "Through diagnosis leak identification & fixing, gas refil to avoid leakages",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Repair of gas leakage",
+      "Cost of gas charging",
+      "Checking of AC controls and functioning",
+      "Cleaning of the area post service",
+      "Cost of spare parts, installation & uninstallation services are not covered"
+    ]
+  },  
+
+
+
+  {
+    "service":"AC",
+    "serviceType": "Split",
+    "serviceName": "AC Install",
+    "price": 899,
+    "description":
+      "Installaton of indoor & outdoor units with free gas check",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Drilling, wiring connections, installation of the indoor & outdoor units & pipe fixes",
+      "Gas check to prevent leakages",
+      "Cooling rate & device checks followed by cleanup of service area"
+    ]
+  },  
+  {
+    "service":"AC",
+    "serviceType": "Split",
+    "serviceName": "AC Uninstall",
+    "price": 2000,
+    "description":
+      "Uninstallation of both indoor & outdoor units",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Uninstallation of indoor & outdoor units",
+      "Pipe fixes",
+      "AC packing(material to be provided by the customer)",
+      "Cleanup of service area"
+      
+    ]
+  },  
+  {
+    "service":"AC",
+    "serviceType": "Window",
+    "serviceName": "AC Install",
+    "price": 899,
+    "description":
+      "Installaton of indoor & outdoor units with free gas check",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Drilling, wiring connections, installation of the indoor & outdoor units & pipe fixes",
+      "Gas check to prevent leakages",
+      "Cooling rate & device checks followed by cleanup of service area"
+    ]
+  },  
+  {
+    "service":"AC",
+    "serviceType": "Window",
+    "serviceName": "AC Uninstall",
+    "price": 1999,
+    "description":
+      "Uninstallation of both indoor & outdoor units",
+    "image": "https://clareservices.com/wp-content/uploads/2021/05/technician-service-removing-air-filter-air-conditioner-cleaning_35076-3617.jpg",
+    "details": [
+      "Uninstallation of indoor & outdoor units",
+      "Pipe fixes",
+      "AC packing(material to be provided by the customer)",
+      "Cleanup of service area"
+      
+    ]
+  }  
+]
+
