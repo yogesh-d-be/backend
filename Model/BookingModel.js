@@ -27,7 +27,7 @@ const bookingSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    stauts:{
+    status:{
         type:String,
         default:"TuneGuru Mender Searching"
     },

@@ -31,11 +31,12 @@ const verifyToken = async (req, res, next) => {
     req.userId = checkToken.userID;
     return next();
   } catch (error) {
+    // console.log(error, "err")
     if (error.name === "TokenExpiredError") {
       return res.status(401).json({ Message: "Token expired" });
     }
     return res.status(404).json({ Message: "Invalid Token" });
   }
-};
+};  
 
 module.exports = { generateAuthToken, verifyToken };

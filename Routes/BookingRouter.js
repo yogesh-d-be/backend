@@ -6,7 +6,7 @@ const {placeBooking,verifyOrder, userBookings} = require('../Controller/BookingC
 const bookingRouter = express.Router();
 
 bookingRouter.post("/place",verifyToken,placeBooking);
-bookingRouter.post("/verify",verifyOrder)
+bookingRouter.post("/verify",verifyToken,verifyOrder)
 bookingRouter.post("/userbookings",verifyToken,userBookings)
 
 module.exports = bookingRouter;
