@@ -14,8 +14,8 @@ const serviceRouter = require('./Routes/ServiceRouter');
 const cartRouter = require('./Routes/CartRouter');
 const bookingRouter = require('./Routes/BookingRouter');
 const jsonParser = bodyParser.json();
-app.use(jsonParser);
 app.use(cors());
+app.use(jsonParser);
 
 // Connect to the database
 connect();
@@ -27,6 +27,14 @@ app.use("/api/homeservice",serviceRouter);
 app.use("/api/cart",cartRouter)
 app.use("/api/book",bookingRouter)
 app.use("/images",express.static('uploads'))
+
+
+//Cors config
+app.use(cors({
+    origin: 'https://tuneguru.netlify.app', //  frontend URL
+    methods: 'GET,POST,PUT,PATCH,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
+}));
 
 // app.use(useRouter);
 // app.use('/customer/user', router); // Use userRoutes for user-related routes
