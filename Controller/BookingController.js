@@ -108,7 +108,9 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeBooking = async (req, res) => {
-    const frontend_url = process.env.NODE_ENV ==='development' ? "http://localhost:3000" : "https://tuneguru.netlify.app/";
+    // const frontend_url = process.env.NODE_ENV ==='development' ? "http://localhost:3000" : "https://tuneguru.netlify.app/";
+    const frontend_url =  "https://tuneguru.netlify.app/" ;
+    // const frontend_url =  "http://localhost:3000" ;
 
     try {
         console.log('Request Body:', req.body); 
@@ -211,4 +213,16 @@ const userBookings = async (req, res) => {
     }
 };
 
-module.exports = { placeBooking, verifyOrder, userBookings };
+
+const listBookings = async(req,res) =>{
+    try {
+
+        const bookings = await bookingModel.find({});
+        res.json({success:true, data:bookings})
+        
+    } catch (error) {
+        res.json({success:false, message:"error",error})
+    }
+}
+
+module.exports = { placeBooking, verifyOrder, userBookings,listBookings };
