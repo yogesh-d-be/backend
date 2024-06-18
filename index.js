@@ -27,7 +27,7 @@ app.use("/api/homeservice",serviceRouter);
 app.use("/api/cart",cartRouter)
 app.use("/api/book",bookingRouter)
 app.use("/images",express.static('uploads'))
-
+app.use("/images",express.static('userFile'))
 
 //Cors config
 app.use(cors({

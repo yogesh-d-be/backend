@@ -332,12 +332,13 @@
 
 const userDB = require("../Model/LoginUserModel");
 const userOtp = require("../Model/UserOtp");
+const fs = require('fs')
 
 const jwt = require("jsonwebtoken");
 const { generateAuthToken } = require("../Middleware/Auth");
 
 const LoginUserDataPost = async (req, res) => {
-  const { username, email, mobilenumber, address } = req.body;
+  const { username, email, mobilenumber, address,userPic } = req.body;
   const userId = req.userId;// This is the authenticated user's ID from auth
 
   if (!username || !email || !mobilenumber || !address) {
@@ -356,7 +357,8 @@ const LoginUserDataPost = async (req, res) => {
         email,
         mobilenumber,
         address,
-        userID: userId
+        userID: userId,
+       
       });
       await loginUserData.save();
       return res.status(200).json(loginUserData);
@@ -457,10 +459,126 @@ const userLogin = async (req, res) => {
   }
 };
 
+const uploadUserProfilePic = async (req, res) => {
+  // const Id = req.userId;
+  // const file = req.file.filename;
+
+  // // if (!file) {
+  // //   return res.status(400).json({ error: "Please upload a file" });
+  // // }
+
+  // try {
+  //   const user = await userDB.findOne({ userID: Id });
+
+  //   if (!user) {
+  //     return res.status(404).json({ error: "User not found" });
+  //   }
+
+  //   // if (user.userPic) {
+  //   //   fs.unlinkSync(path.join(__dirname, '../userFile/', user.userPic));
+  //   // }
+
+  //   user.userPic = file;
+  //   await user.save();
+
+  //   return res.status(200).json({ message: "Profile picture uploaded successfully", user });
+  // } catch (error) {
+  //   return res.status(400).json({ error: "Invalid request", details: error.message });
+  // }
+  
+
+  try {
+    const Id = req.userId;
+  const file = req.file.filename;
+    const user = await userDB.findOne({ userID: Id });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // if (user.userPic) {
+    //   fs.unlinkSync(`userFile/${user.userPic}`)
+
+    // }
+    user.userPic = file;
+    // if (user.userPic) {
+    //   fs.unlink(`userFile/${user.userPic}`, (err) => {
+    //     if (err) {
+    //       console.error("Failed to delete old profile picture:", err);
+    //     }
+    //   });
+   
+      
+    // }
+
+    
+    await user.save();
+
+
+
+    return res.status(200).json({ data:user, message: "Profile picture uploaded successfully", user });
+  } catch (error) {
+    return res.status(400).json({ error: "Invalid request", details: error.message });
+  }
+};
+
+const userProfilePicDelete = async (req, res) => {
+  try {
+    const Id = req.userId;
+    const user = await userDB.findOne({ userID: Id });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (!user.userPic) {
+      return res.status(409).json({ error: "No Picture found" });
+    }
+    if (user.userPic) {
+      fs.unlinkSync(`userFile/${user.userPic}`);
+    }
+
+    user.userPic = undefined;
+    await user.save();
+
+    return res.status(200).json({ message: "User profile picture deleted successfully", user });
+  } catch (error) {
+    return res.status(400).json({ error: "Invalid request", details: error.message });
+  }
+};
+
+
+
+// const userProfilePicDelete = async (req, res) => {
+//   try {
+//     const Id = req.userId;
+//     const user = await userDB.findOne({ userID: Id });
+
+//     // if (!user) {
+//     //   return res.status(404).json({ error: "User not found" });
+//     // }
+
+//     if (!user.userPic) {
+//       return res.status(404).json({ error: "User profile picture not found" });
+//     }
+
+//     // fs.unlinkSync(path.join(__dirname, '../userFile/', user.userPic));
+//     fs.unlink(`userFile/${user.userPic}`,()=>{})
+//     // user.userPic = undefined;
+//     await user.save();
+
+//     return res.status(200).json({ message: "User profile picture deleted successfully" });
+//   } catch (error) {
+//     return res.status(400).json({ error: "Invalid request", details: error.message });
+//   }
+// };
+
 module.exports = {
   LoginUserDataPost,
   userLogin,
   LoginUserDataGet,
   LoginUserDataEdit,
   LoginUserDataDelete,
+  uploadUserProfilePic,
+  userProfilePicDelete
 };
