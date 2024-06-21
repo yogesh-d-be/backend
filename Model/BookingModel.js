@@ -39,6 +39,19 @@ const bookingSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    // repairPic: {
+    //     type: [String], // Array of strings 
+    //     required: true,
+    //     validate: {
+    //         validator: function (array) {
+    //             return array.length <= 3; // Limit to 3 images
+    //         },
+    //         message: 'Cannot upload more than 3 images'
+    //     }
+    // }
+    repairVideo:{
+        type:String
+    }
 
 })
 

@@ -111,22 +111,34 @@ const placeBooking = async (req, res) => {
     // const frontend_url = process.env.NODE_ENV ==='development' ? "http://localhost:3000" : "https://tuneguru.netlify.app";
     const frontend_url =  "https://tuneguru.netlify.app" ;
     // const frontend_url =  "http://localhost:3000" ;
-
+    let bookingId = null
     try {
-        console.log('Request Body:', req.body); 
+        
         const userId = req.userId;
+
+        let bookings = req.body.bookings;
+        if(typeof bookings === 'string'){
+            bookings = JSON.parse(bookings); //convert string to array
+            //because of file request sometimes aaray become string
+        }
+
+        if(!Array.isArray(bookings)){
+            throw new Error('bookings must be an array')
+        }
 
         const newBooking = new bookingModel({
             userId: userId,
-            bookings: req.body.bookings,
+            bookings: bookings,
             amount: req.body.amount,
-            address: req.body.address,
+            address: JSON.parse(req.body.address),
             bookingDate: req.body.bookingDate,
-            bookingTime: req.body.bookingTime
+            bookingTime: req.body.bookingTime,
+            repairVideo: req.file ? req.file.path : null,
+            // payment:false//initialise
         });
 
         await newBooking.save();
-        
+        bookingId = newBooking._id;
         // Clear user's cart data
         await userDB.findOneAndUpdate(
             { userID: userId },
@@ -134,7 +146,7 @@ const placeBooking = async (req, res) => {
             { new: true }
         );
 
-        const line_items = req.body.bookings.map((booking) => ({
+        const line_items = bookings.map((booking) => ({
             price_data: {
                 currency: "inr",
                 product_data: {
@@ -145,7 +157,7 @@ const placeBooking = async (req, res) => {
             quantity: booking.quantity,
         }));
 
-        const totalBookingAmount = req.body.bookings.reduce((total, booking) => total + booking.price * booking.quantity, 0);
+        const totalBookingAmount = bookings.reduce((total, booking) => total + booking.price * booking.quantity, 0);
     
         line_items.push({
             price_data: {
@@ -162,21 +174,25 @@ const placeBooking = async (req, res) => {
             payment_method_types: ['card'],
             line_items: line_items,
             mode: 'payment',
-            success_url: `${frontend_url}/verify?success=true&bookingId=${newBooking._id}`,
-            cancel_url: `${frontend_url}/verify?success=false&bookingId=${newBooking._id}`,
+            success_url: `${frontend_url}/verify?success=true&bookingId=${bookingId}`,
+            cancel_url: `${frontend_url}/verify?success=false&bookingId=${bookingId}`,
         });
 
         res.status(200).json({ success: true, session_url: session.url });
     } 
     catch (error) {
         console.error('Error placing booking:', error);
-        await bookingModel.findByIdAndDelete(bookingId);
-        res.status(400).json({ success: false, message: "Error placing booking", error: error.message });
+        if(bookingId){
+            await bookingModel.findByIdAndDelete(bookingId);
+        }
+        
+        res.status(400).json({ success: false, message: "Error placing booking, Check book details are filled..!", error: error.message });
     }
 };
 
 const verifyBookings = async (req, res) => {
     const { bookingId, success } = req.body;
+    
 
     try {
         if (success === "true") {

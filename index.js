@@ -28,6 +28,7 @@ app.use("/api/cart",cartRouter)
 app.use("/api/book",bookingRouter)
 app.use("/images",express.static('uploads'))
 app.use("/images",express.static('userFile'))
+app.use("/video/RepairVideo", express.static("RepairVideo"))
 
 //Cors config
 app.use(cors({
