@@ -134,6 +134,7 @@ const placeBooking = async (req, res) => {
             bookingDate: req.body.bookingDate,
             bookingTime: req.body.bookingTime,
             repairVideo: req.file ? req.file.path : null,
+            paymentMethod: req.body.paymentMethod
             // payment:false//initialise
         });
 
@@ -145,6 +146,11 @@ const placeBooking = async (req, res) => {
             { cartData: {} },
             { new: true }
         );
+
+        if(req.body.paymentMethod === "cash"){
+            await bookingModel.findByIdAndUpdate(bookingId,{payment:true});
+            return res.status(200).json({success:true, message:"Booking placed"})
+        }
 
         const line_items = bookings.map((booking) => ({
             price_data: {
