@@ -33,11 +33,16 @@ const bookingSchema = new mongoose.Schema({
     },
     date:{
         type:Date,
-        default:Date.now()
+        default:Date.now
     },
     payment:{
         type:Boolean,
         default:false
+    },
+    paymentMethod: {
+        type: String,
+        enum: ['cash', 'card'],
+        default: 'card'
     },
     // repairPic: {
     //     type: [String], // Array of strings 
