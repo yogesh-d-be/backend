@@ -336,6 +336,7 @@ const fs = require('fs')
 
 const jwt = require("jsonwebtoken");
 const { generateAuthToken } = require("../Middleware/Auth");
+const createContactUserData = require("./ContactController");
 
 const LoginUserDataPost = async (req, res) => {
   const { username, email, mobilenumber, address,userPic } = req.body;
@@ -361,6 +362,7 @@ const LoginUserDataPost = async (req, res) => {
        
       });
       await loginUserData.save();
+      await createContactUserData(req, res, email);
       return res.status(200).json(loginUserData);
     
   } catch (error) {
@@ -535,7 +537,7 @@ const userProfilePicDelete = async (req, res) => {
       return res.status(409).json({ error: "No Picture found" });
     }
     if (user.userPic) {
-      fs.unlinkSync(`userFile/${user.userPic}`);
+      fs.unlinkSync(`Public/userFile/${user.userPic}`);
     }
 
     user.userPic = undefined;

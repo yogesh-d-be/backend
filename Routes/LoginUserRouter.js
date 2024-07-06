@@ -18,7 +18,7 @@ const { userOtpSend } = require('../Utility/MailUtility');
 const { verifyToken } = require('../Middleware/Auth');
 
 const storage = multer.diskStorage({
-  destination: "./userFile",
+  destination: "./Public/userFile",
   filename: (req, file, cb) => {
     return cb(null, `${Date.now()}${file.originalname}`);
   }

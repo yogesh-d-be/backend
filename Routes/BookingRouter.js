@@ -3,12 +3,12 @@ const multer = require('multer');
 const path = require('path')
 const {verifyToken} = require('../Middleware/Auth');
 
-const {placeBooking, userBookings, listBookings, verifyBookings, updateStatus} = require('../Controller/BookingController');
+const {placeBooking, userBookings, listBookings, verifyBookings, updateStatus, cancelBooking} = require('../Controller/BookingController');
 
 const bookingRouter = express.Router();
 
 const storage = multer.diskStorage({
-    destination:"./RepairVideo",
+    destination:"./Public/RepairVideo",
     filename:(req, file, cb) =>{
         return cb(null, `${Date.now()}-${file.originalname}`)
     }
@@ -54,5 +54,7 @@ bookingRouter.post("/verify",verifyToken,verifyBookings);
 bookingRouter.post("/userbookings",verifyToken,userBookings);
 bookingRouter.get('/listbookings',listBookings)
 bookingRouter.post('/status',updateStatus)
+bookingRouter.post('/cancel',cancelBooking)
+
 
 module.exports = bookingRouter;
