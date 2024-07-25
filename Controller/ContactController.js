@@ -4,7 +4,7 @@ const nodeMailer = require('nodemailer');
 const createContactUserData = async(req,res) =>{
     try{
         const {name,emailId,mobileNumber,message} = req.body;
-        const file = req.file.filename;
+        const file =req.file ? req.file.filename: null;
         const contactUserData = new userContact({name,emailId,mobileNumber,message, contactFile:file});
         await contactUserData.save();
         await sendMailToUser( name, emailId, mobileNumber, message,file)
@@ -13,6 +13,16 @@ const createContactUserData = async(req,res) =>{
         res.status(400).json({ success:false, message: "Failed to save contact data or send email", details: error.message });
     }
     
+}
+
+const contactUserDataGet = async(req,res) =>{
+    try {
+      const contact = await userContact.find({});
+      return res.status(200).json({success:true, data:contact})  
+    } 
+    catch (error) {
+        return res.status(400).json({success:false, message:"Error",error})
+    }
 }
 
 const sendMailToUser = async ( name, emailId, mobileNumber, message, file) =>{
@@ -52,4 +62,7 @@ const sendMailToUser = async ( name, emailId, mobileNumber, message, file) =>{
     }
 }
 
-module.exports = createContactUserData;
+module.exports = 
+{createContactUserData,
+    contactUserDataGet
+}

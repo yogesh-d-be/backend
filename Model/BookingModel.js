@@ -56,6 +56,9 @@ const bookingSchema = new mongoose.Schema({
     // }
     repairVideo:{
         type:String
+    },
+    mender:{
+        type:Array,
     }
 
 })

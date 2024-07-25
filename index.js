@@ -39,11 +39,11 @@ app.use('/api/mender',menderRouter);
 // app.use('mender/bankdetails',express.static("Public/BankDetails"))
 app.use('/files/menderdata', express.static('Public/MenderData'));
 //Cors config
-app.use(cors({
-    origin: 'https://tuneguru.netlify.app', //  frontend URL
-    methods: 'GET,POST,PUT,PATCH,DELETE',
-    allowedHeaders: 'Content-Type,Authorization'
-}));
+// app.use(cors({
+//     origin: 'https://tuneguru.netlify.app', //  frontend URL
+//     methods: 'GET,POST,PUT,PATCH,DELETE',
+//     allowedHeaders: 'Content-Type,Authorization'
+// }));
 
 // app.use(useRouter);
 // app.use('/customer/user', router); // Use userRoutes for user-related routes

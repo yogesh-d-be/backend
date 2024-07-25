@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
-const { menderDataRegister, menderDataGet, menderDataEdit, menderDataDelete, validateMenderData } = require('../Controller/MenderController');
+const { menderDataRegister, menderDataGet, menderDataEdit, validateMenderData, menderDataActive, menderDataInactive, menderLogout, menderLogin, menderSearch } = require('../Controller/MenderController');
 const {verifyToken} = require('../Middleware/Auth')
 
 const menderRouter = express.Router();
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'application/pdf') {
+    if (file.mimetype.startsWith('image/')   ||file.mimetype === 'application/pdf') {
         cb(null, true);
     } else {
         cb(new Error('Only PDF files are allowed'));
@@ -55,17 +55,23 @@ function multerErrorHandler(err, req, res, next) {
 }
 
 menderRouter.post('/register', upload.fields([
+    { name: 'profilePicture', maxCount: 1 },
     { name: 'aadhaar', maxCount: 1 },
     { name: 'pancard', maxCount: 1 },
     { name: 'bank', maxCount: 1 }
-]), multerErrorHandler,verifyToken, menderDataRegister);
-menderRouter.post('/validate',verifyToken,validateMenderData)
+]), multerErrorHandler, menderDataRegister);
+menderRouter.post('/validate',validateMenderData)
 menderRouter.get('/listmender', menderDataGet);
 menderRouter.put('/editmender/:id', upload.fields([
+    { name: 'profilePicture', maxCount: 1 },
     { name: 'aadhaar', maxCount: 1 },
     { name: 'pancard', maxCount: 1 },
     { name: 'bank', maxCount: 1 }
 ]), multerErrorHandler, menderDataEdit);
-menderRouter.delete('/deletemender/:id', menderDataDelete);
+menderRouter.post('/inactivemender/:id', menderDataInactive);
+menderRouter.post('/activemender/:id',menderDataActive);
+menderRouter.post('/logoutmender/:id',menderLogout);
+menderRouter.post('/loginmender/:id',menderLogin);
+menderRouter.get('/search',menderSearch);
 
 module.exports = menderRouter;

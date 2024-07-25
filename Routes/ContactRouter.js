@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require("multer");
 const contactRouter = express.Router();
 const { verifyToken } = require('../Middleware/Auth');
-const createContactUserData = require('../Controller/ContactController');
+const {createContactUserData, contactUserDataGet} = require('../Controller/ContactController');
 
 const storage = multer.diskStorage({
     destination: "./Public/ContactFile",
@@ -45,6 +45,7 @@ function multerErrorHandler(err,req,res,next){
     next();
 }
 
-contactRouter.post("/form",verifyToken, upload.single("contactFile"),multerErrorHandler,createContactUserData)
+contactRouter.post("/form",verifyToken, upload.single("contactFile"),multerErrorHandler,createContactUserData);
+contactRouter.get("/listform",contactUserDataGet)
 
 module.exports = contactRouter;
