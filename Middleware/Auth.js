@@ -1,4 +1,3 @@
-
 const jwt = require("jsonwebtoken");
 const userDB = require("../Model/LoginUserModel");
 const userOtp = require("../Model/UserOtp"); // Require the userOtp model

@@ -172,4 +172,31 @@ catch(error){
 }
 }
 
-module.exports = { placeBooking, verifyBookings, userBookings,listBookings,updateStatus, cancelBooking };
+const assignMender = async(req,res) =>{
+
+    try{
+    const {bookingId, mender} = req.body;
+
+    if(!bookingId, mender){
+        return res.status(400).json({success:false, message: "Booking ID and Mender not found"})
+    }
+
+    const booking = await bookingModel.findById(bookingId);
+
+    if(!booking){
+        return res.status(404).json({ success: false, message: 'Booking not found.' });
+    }
+
+    booking.mender.push(mender);
+    await booking.save();
+
+    return res.status(200).json({success:true, message: "Mender assigned successfully"});
+    }
+    catch (error) {
+        console.error('Error assigning mender to booking:', error);
+        return res.status(500).json({ success: false, message: 'Error assigning mender to booking', error: error.message });
+      }
+
+}
+
+module.exports = { placeBooking, verifyBookings, userBookings,listBookings,updateStatus, cancelBooking, assignMender };

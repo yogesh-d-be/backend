@@ -19,7 +19,10 @@ const user = new mongoose.Schema({
     contactFile:{
         type:String, 
     },
-
+    date:{
+        type:Date,
+        default:Date.now
+    },
     
 })
 

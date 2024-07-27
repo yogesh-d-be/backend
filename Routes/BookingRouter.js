@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path')
 const {verifyToken} = require('../Middleware/Auth');
 
-const {placeBooking, userBookings, listBookings, verifyBookings, updateStatus, cancelBooking} = require('../Controller/BookingController');
+const {placeBooking, userBookings, listBookings, verifyBookings, updateStatus, cancelBooking, assignMender} = require('../Controller/BookingController');
 
 const bookingRouter = express.Router();
 
@@ -52,9 +52,10 @@ function multerErrorHandler(err, req, res, next) {
 bookingRouter.post("/place",verifyToken,upload.single('repairVideo'),multerErrorHandler,placeBooking);
 bookingRouter.post("/verify",verifyToken,verifyBookings);
 bookingRouter.post("/userbookings",verifyToken,userBookings);
-bookingRouter.get('/listbookings',listBookings)
-bookingRouter.post('/status',updateStatus)
-bookingRouter.post('/cancel',cancelBooking)
+bookingRouter.get('/listbookings',listBookings);
+bookingRouter.post('/status',updateStatus);
+bookingRouter.post('/cancel',cancelBooking);
+bookingRouter.post('/assignmender',assignMender);
 
 
 module.exports = bookingRouter;

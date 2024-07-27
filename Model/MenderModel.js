@@ -10,10 +10,12 @@ const numberRequired = {
     required: true
 };
 
-const menderDataSchema = new mongoose.Schema({
+const menderData = new mongoose.Schema({
+   
     name: stringRequired,
     mobileNumber: {...numberRequired,unique:true},
     emailId: {...stringRequired,unique:true},
+    profilePicture:stringRequired,
     aadhaar: stringRequired,
     pancard: stringRequired, // Updated field name to match controller
     bank: stringRequired,
@@ -23,16 +25,24 @@ const menderDataSchema = new mongoose.Schema({
         required: true
     },
     experience: stringRequired,
+    accountStatus:{
+        type:String,
+        enum:['active','inactive']
+    },
     status:{
         type: String,
-        enum:['active','inactive'],
-        default: null
+        enum:['login','logout','remove'],
     },
     workStatus:{
         type: String,
         enum:['assigned','notAssign'],
         default: null
-    }
+    },
+    date:{
+        type:Date,
+        default:Date.now
+    },
 });
 
-module.exports = mongoose.model('MenderData', menderDataSchema);
+const menderDB = mongoose.model('MenderData', menderData);
+module.exports = menderDB;
