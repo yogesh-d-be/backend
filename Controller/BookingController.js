@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeBooking = async (req, res) => {
     // const frontend_url = process.env.NODE_ENV ==='development' ? "http://localhost:3000" : "https://tuneguru.netlify.app";
-    const frontend_url =  "https://tuneguru.netlify.app" ;
+    const frontend_url =  "https://tuneguru.netlify.app";
     // const frontend_url =  "http://localhost:3000" ;
     let bookingId = null
     try {
