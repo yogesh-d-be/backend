@@ -362,7 +362,7 @@ const LoginUserDataPost = async (req, res) => {
        
       });
       await loginUserData.save();
-      await createContactUserData(req, res, email);
+      // await createContactUserData(req, res, email);
       return res.status(200).json(loginUserData);
     
   } catch (error) {
@@ -462,31 +462,7 @@ const userLogin = async (req, res) => {
 };
 
 const uploadUserProfilePic = async (req, res) => {
-  // const Id = req.userId;
-  // const file = req.file.filename;
-
-  // // if (!file) {
-  // //   return res.status(400).json({ error: "Please upload a file" });
-  // // }
-
-  // try {
-  //   const user = await userDB.findOne({ userID: Id });
-
-  //   if (!user) {
-  //     return res.status(404).json({ error: "User not found" });
-  //   }
-
-  //   // if (user.userPic) {
-  //   //   fs.unlinkSync(path.join(__dirname, '../userFile/', user.userPic));
-  //   // }
-
-  //   user.userPic = file;
-  //   await user.save();
-
-  //   return res.status(200).json({ message: "Profile picture uploaded successfully", user });
-  // } catch (error) {
-  //   return res.status(400).json({ error: "Invalid request", details: error.message });
-  // }
+  
   
 
   try {
@@ -498,20 +474,9 @@ const uploadUserProfilePic = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // if (user.userPic) {
-    //   fs.unlinkSync(`userFile/${user.userPic}`)
-
-    // }
+    
     user.userPic = file;
-    // if (user.userPic) {
-    //   fs.unlink(`userFile/${user.userPic}`, (err) => {
-    //     if (err) {
-    //       console.error("Failed to delete old profile picture:", err);
-    //     }
-    //   });
-   
-      
-    // }
+    
 
     
     await user.save();

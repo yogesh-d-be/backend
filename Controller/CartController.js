@@ -6,6 +6,7 @@ const addToCart = async (req, res) => {
         let userData = await userDB.findOne({ userID: req.userId });//authentication userId
         let cartData = userData.cartData || {};
 
+        
         let serviceId = req.body.s_id;
 
         if (!cartData[serviceId]) {

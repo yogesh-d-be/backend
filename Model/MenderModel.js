@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const { trim } = require('validator');
 
 const stringRequired = {
     type: String,
-    required: true
+    required: true,
+    trim:true
 };
 
 const numberRequired = {
